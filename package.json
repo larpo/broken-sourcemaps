@@ -1,0 +1,26 @@
+{
+  "name": "broken-sourcemaps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -e index.js -d | exorcist build/bundle.js.map > build/bundle.js",
+    "uglify": "cd build && uglifyjs -o bundle.min.js --source-map bundle.min.js.map  --in-source-map bundle.js.map --source-map-url bundle.min.js.map -- bundle.js",
+    "prestart": "npm run build && npm run uglify",
+    "start": "http-server build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larpo/broken-sourcemaps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/larpo/broken-sourcemaps#readme",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "exorcist": "^0.4.0",
+    "http-server": "^0.9.0",
+    "uglify-js": "^2.6.2",
+    "uglifyify": "^3.0.1"
+  }
+}
