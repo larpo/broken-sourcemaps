@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -e index.js -d | exorcist build/bundle.js.map > build/bundle.js",
-    "uglify": "cd build && uglifyjs -o bundle.min.js --source-map bundle.min.js.map  --in-source-map bundle.js.map --source-map-url bundle.min.js.map -- bundle.js",
+    "build": "mkdir -p build && cp index.html build/ && browserify -e src/index.js -d | exorcist build/bundle.js.map > build/bundle.js",
+    "uglify": "cd build && uglifyjs bundle.js -o bundle.min.js --in-source-map bundle.js.map --source-map-include-sources --source-map bundle.min.js.map",
     "prestart": "npm run build && npm run uglify",
     "start": "http-server build"
   },
@@ -20,7 +20,6 @@
     "browserify": "^13.0.0",
     "exorcist": "^0.4.0",
     "http-server": "^0.9.0",
-    "uglify-js": "^2.6.2",
-    "uglifyify": "^3.0.1"
+    "uglify-js": "^2.6.0"
   }
 }
